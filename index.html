@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset="UTF-8"  name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>AngularJS</title>
+		
+		<link rel = "stylesheet" type = "text/css" href = "css/bootstrap.css" />
+		<script src = "js/angular.js"></script>
+		<script src = "js/app.js"></script>
+		
+		
+	</head>
+	
+<body ng-app="myModule" ng-controller="myController" style="margin:55px;">
+	
+	
+	
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8 well card">
+			<div class="alert alert-success">Enter Name 
+				<button class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#add_user">ADD
+				</button>
+			</div>
+			
+			<div class="container-fluid">
+				<br />
+				<br />
+				<table class="table table-bordered alert-success">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th colspan="2">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "user in users">
+							<td>{{$index+1}}</td>
+							<td>{{user.name}}</td>
+							<td><button type="button" data-toggle="modal" data-target="#update_user" ng-click = "selectuser(user)" class="btn btn-sm btn-warning"> Update</button></td>
+							<td><button class="btn btn-danger" data-dismiss="modal" ng-click="deleteuser()"> Delete</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+	</div>	
+	<div class="modal fade" id="add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title text-info" id="myModalLabel">Add User</h4>
+				</div>
+				<div class="modal-body">	
+						<div class="form-group">
+							<label>Full Name</label>
+							<input type="text" class="form-control" ng-model="newuser.name"/>
+						</div>
+						
+				</div>
+				<div class="modal-footer">
+					<button  class="btn btn-primary" ng-click="saveuser()" data-dismiss="modal"> Save</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="update_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title text-info" id="myModalLabel">Update User</h4>
+				</div>
+				<div class="modal-body">	
+						<div class = "form-group">
+							<label>Full Name</label>
+							<input type="text" class="form-control" ng-model="selecteduser.name"/>
+						</div>
+						
+				</div>
+				<div class="modal-footer">
+					<button  class="btn btn-success"  data-dismiss="modal" ng-click="update_user()"> Update</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</body>
+
+<script src="js/jquery-3.1.1.js"></script>	
+<script src="js/bootstrap.js"></script>	
+</html>
